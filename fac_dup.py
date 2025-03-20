@@ -18,7 +18,7 @@ ap.add_argument("-i", "--image", required=True,
 	help="path to input image")
 args = vars(ap.parse_args())
 for imagePath in glob.glob(args["image"] + "/*.jpg"):
-
+    c
 # initialize dlib's face detector (HOG-based) and then create
 # the facial landmark predictor
 	detector = dlib.get_frontal_face_detector()
