@@ -1,7 +1,5 @@
 # USAGE
 # python facial_landmarks.py --shape-predictor shape_predictor_68_face_landmarks.dat --image images/example_01.jpg 
-
-# import the necessary packages
 from imutils import face_utils
 import numpy as np
 import argparse
@@ -14,7 +12,6 @@ import os,sys
 import operator
 
 from PIL import Image
-# construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-p", "--shape-predictor", required=True,
 	help="path to facial landmark predictor")
@@ -49,10 +46,7 @@ while t<=39:
 	print(face_arr[t]) 
 	print(thresh_arr[t])
 	print(path_arr[t])
-	t=t+1'''
-
-#for imagePath in glob.glob(args["image"] + "/*.jpg"):
-	
+	t=t+1'''	
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(args["shape_predictor"])
 
@@ -92,18 +86,14 @@ for (i, rect) in enumerate(rects):
 		if(count==28):
 			(x28,y28)=(x,y)
 	
-	#print("1.",(x1,y1),"3.",(x17,y17),"5.",(x9,y9),"7.",(x28,y28))
 	slope1=((y3-y1)*(1.0))/((x3-x1)*(1.0))
 	slope2=((y5-y3)*(1.0))/((x5-x3)*(1.0))
 	slope3=((y7-y5)*(1.0))/((x7-x5)*(1.0))
 	slope4=((y9-y7)*(1.0))/((x9-x7)*(1.0))		
-	#print('s1:',slope1,'s2:',slope2,'s3:',slope3,'s4:',slope4)
 	
 	distx=math.sqrt(pow((x1-x17),2)+pow((y1-y17),2))
 	disty=math.sqrt(pow((x9-x28),2)+pow((y9-y28),2))
 	thresh=distx-disty
-	#threshold.write(str(thresh)+" ")
-	#new.write(str(thresh)+"\t")
 		
 	print ("x:",distx,"y:",disty,"thre",thresh)
 	lg=open('long','r+')
@@ -140,7 +130,6 @@ for (i, rect) in enumerate(rects):
 				lg.seek(0)
 				lg.write(str(avgthresh)+"\n")
 				lg.write(str(counter))
-				#face.write(str(face1)+" ")
 			else:
 				print("square face")
 				face1=1
@@ -151,7 +140,6 @@ for (i, rect) in enumerate(rects):
 				squ.seek(0)
 				squ.write(str(avgthresh)+"\n")
 				squ.write(str(counter))
-				#face.write(str(face1)+" ")
 		elif slope1<7.395:
 			if slope3>=1.15:
 				print("square face")
@@ -163,7 +151,6 @@ for (i, rect) in enumerate(rects):
 				squ.seek(0)
 				squ.write(str(avgthresh)+"\n")
 				squ.write(str(counter))
-				#face.write(str(face1)+" ")
 			else:
 				print ("long face")
 				face1=0
@@ -174,7 +161,6 @@ for (i, rect) in enumerate(rects):
 				lg.seek(0)
 				lg.write(str(avgthresh)+"\n")
 				lg.write(str(counter))
-				#face.write(str(face1)+" ")
 				
 	if thresh>total_thresh:
 		print("round or heart")
@@ -189,7 +175,6 @@ for (i, rect) in enumerate(rects):
 				het.seek(0)
 				het.write(str(avgthresh)+"\n")
 				het.write(str(counter))
-				#face.write(str(face1)+" ")
 			else:
 				print("round face")
 				face1=3
@@ -200,7 +185,6 @@ for (i, rect) in enumerate(rects):
 				rnd.seek(0)
 				rnd.write(str(avgthresh)+"\n")
 				rnd.write(str(counter))
-				#face.write(str(face1)+" ")
 			
 		elif slope1<11.75:
 			if slope3>1.1:
@@ -213,7 +197,6 @@ for (i, rect) in enumerate(rects):
 				rnd.seek(0)
 				rnd.write(str(avgthresh)+"\n")
 				rnd.write(str(counter))
-				#face.write(str(face1)+" ")
 			else:
 				print("heart face")
 				face1=2
@@ -224,16 +207,10 @@ for (i, rect) in enumerate(rects):
 				het.seek(0)
 				het.write(str(avgthresh)+"\n")
 				het.write(str(counter))
-				#face.write(str(face1)+" ")
 		
 			
 				
-				
-	#path.write(str(imagePath)+" ")
-		
-	#im=Image.open(open(str(imagePath), 'rb'))
-	#im=imutils.resize(im, width=500)
-	#im.show()
+
 	t=0
 	cc=0	
 	data=0	
