@@ -9,7 +9,7 @@ import cv2
 import math
 import glob
 import os,sys
-import operator
+import operator      
 
 from PIL import Image
 ap = argparse.ArgumentParser()
